@@ -2,7 +2,7 @@ plugins {
     id("java")
 }
 
-group = "org.hsa"
+group = "org.hsa.airdnd"
 version = "1.0-SNAPSHOT"
 
 repositories {
