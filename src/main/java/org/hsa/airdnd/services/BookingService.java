@@ -31,13 +31,16 @@ public class BookingService {
     }
 
     public double calculatePrice(final BookingDto booking) {
-        final long totalNights = ChronoUnit.DAYS.between(booking.getFrom(), booking.getTo());
+        final long totalNights = getTotalNights(booking);
         return PRICE_ROOM * totalNights;
     }
 
+    private static long getTotalNights(BookingDto booking) {
+        return ChronoUnit.DAYS.between(booking.getFrom(), booking.getTo());
+    }
+
     public double calculateInMxn(final BookingDto booking) {
-        final long totalNights = ChronoUnit.DAYS.between(booking.getFrom(), booking.getTo());
-        return CurrencyConverter.toMx(PRICE_ROOM * totalNights);
+        return CurrencyConverter.toMx(calculatePrice(booking));
     }
 
     public String booking(final BookingDto booking) {
